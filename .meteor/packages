@@ -7,3 +7,5 @@ standard-app-packages
 autopublish
 insecure
 email
+accounts-base
+accounts-password
