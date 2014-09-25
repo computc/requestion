@@ -1,20 +1,21 @@
 if(Meteor.isClient)
 {
-	Template.request.events(
+	Template.panel.email = function()
 	{
-		"submit #request > form": function(event)
+		var user = Meteor.user();
+		
+		if(user && user.emails)
+		{
+			return user.emails[0].address;
+		}
+	}
+	
+	Template.panel.events(
+	{
+		"click #logout": function(event, template)
 		{
 			event.preventDefault();
-			
-			var name = $("#request > form").find("#name").val();
-			var course = $("#request > form").find("#course").val();
-			
-			if(!name || !course)
-			{
-				throw "not enough information";
-			}
-			
-			//Meteor.call("notify tutors", name, course);
+			Meteor.logout();
 		}
 	});
 	
@@ -76,6 +77,24 @@ if(Meteor.isClient)
 					console.log("account made!");
 				}
 			});
+		}
+	});
+	
+	Template.request.events(
+	{
+		"submit #request > form": function(event)
+		{
+			event.preventDefault();
+			
+			var name = $("#request > form").find("#name").val();
+			var course = $("#request > form").find("#course").val();
+			
+			if(!name || !course)
+			{
+				throw "not enough information";
+			}
+			
+			//Meteor.call("notify tutors", name, course);
 		}
 	});
 }
