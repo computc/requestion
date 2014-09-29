@@ -3,11 +3,11 @@
 </head>
 
 <body>
-	{{> requestion}}
+	{{> form}}
 </body>
 
-<template name="requestion">
-	<section id="requestion">
+<template name="form">
+	<section id="form">
 		<form>
 			<div>
 				<label for="name">Name</label>
@@ -24,4 +24,10 @@
 			<input type="submit" value="Submit a request"/>
 		</form>
 	</section>
+</template>
+
+<template name="message">
+	<div>Name: {{name}}</div>
+	<div>Email: {{email}}</div>
+	<div>Course: {{course}}</div>
 </template>

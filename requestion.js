@@ -2,7 +2,7 @@ Requests = new Meteor.Collection("requests");
 
 if(Meteor.isClient)
 {
-	Template.requestion.events(
+	Template.form.events(
 	{
 		"submit form": function(event)
 		{
@@ -10,43 +10,34 @@ if(Meteor.isClient)
 			
 			var data =
 			{
-				name: $("form").find("#name").val() || "Andrew McPherson",
-				email: $("form").find("#email").val() || "andrewmcp333@gmail.com",
-				course: $("form").find("#course").val() || "CPSC1110"
+				name: $("form").find("#name").val(),
+				email: $("form").find("#email").val(),
+				course: $("form").find("#course").val()
 			}
 			
-			Meteor.call("submit a request", data);
+			Requests.insert(data);
+			
+			Meteor.call("send an email", Blaze.toHTML(Blaze.With(data, function() {return Template.message;})));
 		}
 	});
 }
 
 if(Meteor.isServer)
 {
-	Meteor.startup(function()
-	{
-		//Requests.remove({/*!*/});
-	});
-	
 	Meteor.methods(
 	{
-		"submit a request": function(data)
+		"send an email": function(message)
 		{
-			var request = Requests.insert(data);
-			
-			console.log(request);
-			
 			this.unblock();
-			
-			var SUBJECT_PREFIX = "[requestion]";
-			var subject = SUBJECT_PREFIX + " " + data.course;
-			var message = "Hello World!";
 			
 			Email.send({
 				from: "CompUTC <computcofficial@gmail.com>",
-				to: "Andrew McPherson <andrewmcp333@gmail.com>",
-				subject: subject,
-				text: message
+				to: "CompUTC <computcofficial@gmail.com>",
+				subject: "[requestion]",
+				html: message
 			});
+			
+			console.log("sending an email!");
 		}
 	});
 }
