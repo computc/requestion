@@ -5,29 +5,3 @@
 <body>
 	{{> form}}
 </body>
-
-<template name="form">
-	<section id="form">
-		<form>
-			<div>
-				<label for="name">Name</label>
-				<input id="name" type="text"/>
-			</div>
-			<div>
-				<label for="email">Email</label>
-				<input id="email" type="text"/>
-			</div>
-			<div>
-				<label for="course">Course</label>
-				<input id="course" type="text"/>
-			</div>
-			<input type="submit" value="Submit a request"/>
-		</form>
-	</section>
-</template>
-
-<template name="message">
-	<div>Name: {{name}}</div>
-	<div>Email: {{email}}</div>
-	<div>Course: {{course}}</div>
-</template>

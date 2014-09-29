@@ -12,7 +12,8 @@ if(Meteor.isClient)
 			{
 				name: $("form").find("#name").val(),
 				email: $("form").find("#email").val(),
-				course: $("form").find("#course").val()
+				course: $("form").find("#course").val(),
+				monday: "2pm", tuesday: "1:15pm", wednesday: "3pm"
 			}
 			
 			Requests.insert(data);
