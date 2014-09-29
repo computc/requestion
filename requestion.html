@@ -3,7 +3,25 @@
 </head>
 
 <body>
-	{{> panel}}
-	{{> login}}
-	{{> signup}}
+	{{> requestion}}
 </body>
+
+<template name="requestion">
+	<section id="requestion">
+		<form>
+			<div>
+				<label for="name">Name</label>
+				<input id="name" type="text"/>
+			</div>
+			<div>
+				<label for="email">Email</label>
+				<input id="email" type="text"/>
+			</div>
+			<div>
+				<label for="course">Course</label>
+				<input id="course" type="text"/>
+			</div>
+			<input type="submit" value="Submit a request"/>
+		</form>
+	</section>
+</template>

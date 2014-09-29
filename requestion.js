@@ -1,113 +1,44 @@
+Requests = new Meteor.Collection("requests");
+
 if(Meteor.isClient)
 {
-	Template.panel.email = function()
+	Template.requestion.events(
 	{
-		var user = Meteor.user();
-		
-		if(user && user.emails)
-		{
-			return user.emails[0].address;
-		}
-	}
-	
-	Template.panel.events(
-	{
-		"click #logout": function(event, template)
-		{
-			event.preventDefault();
-			Meteor.logout();
-		}
-	});
-	
-	Template.login.events(
-	{
-		"submit #login > form": function(event, template)
+		"submit form": function(event)
 		{
 			event.preventDefault();
 			
-			var email = template.find("#email").value;
-			var password = template.find("#password").value;
-			
-			if(!email || !password)
+			var data =
 			{
-				throw "not enough information";
+				name: $("form").find("#name").val() || "Andrew McPherson",
+				email: $("form").find("#email").val() || "andrewmcp333@gmail.com",
+				course: $("form").find("#course").val() || "CPSC1110"
 			}
 			
-			Meteor.loginWithPassword(email, password, function(error)
-			{
-				if(error)
-				{
-					console.log("login did not work.");
-				}
-				else
-				{
-					console.log("login work.");
-				}
-			});
-		}
-	});
-	
-	Template.signup.events(
-	{
-		"submit #signup > form": function(event, template)
-		{
-			event.preventDefault();
-			
-			var email = template.find("#email").value;
-			var password = template.find("#password").value;
-			
-			if(!email || !password)
-			{
-				throw "not enough information";
-			}
-			
-			Accounts.createUser(
-			{
-				email: email,
-				password : password
-			},
-			function(error)
-			{
-				if(error)
-				{
-					console.log("account failed");
-				}
-				else
-				{
-					console.log("account made!");
-				}
-			});
-		}
-	});
-	
-	Template.request.events(
-	{
-		"submit #request > form": function(event)
-		{
-			event.preventDefault();
-			
-			var name = $("#request > form").find("#name").val();
-			var course = $("#request > form").find("#course").val();
-			
-			if(!name || !course)
-			{
-				throw "not enough information";
-			}
-			
-			//Meteor.call("notify tutors", name, course);
+			Meteor.call("submit a request", data);
 		}
 	});
 }
 
 if(Meteor.isServer)
 {
+	Meteor.startup(function()
+	{
+		//Requests.remove({/*!*/});
+	});
+	
 	Meteor.methods(
 	{
-		"notify tutors": function(name, course)
+		"submit a request": function(data)
 		{
+			var request = Requests.insert(data);
+			
+			console.log(request);
+			
 			this.unblock();
 			
-			var subject = SUBJECT_PREFIX + " " + course;
+			var SUBJECT_PREFIX = "[requestion]";
+			var subject = SUBJECT_PREFIX + " " + data.course;
 			var message = "Hello World!";
 			
 			Email.send({
@@ -119,5 +50,3 @@ if(Meteor.isServer)
 		}
 	});
 }
-
-var SUBJECT_PREFIX = "[requestion]";
