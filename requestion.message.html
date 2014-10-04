@@ -1,11 +1,11 @@
-<template name="message">
+<template name="tutor_message">
 	<div style="max-width: 480px; margin: auto;">
 		
 		<img src="http://computc.org/images/logobg.png" alt="" style="width: 100%;"/>
 		
 		<div style="margin-top: 1em; margin-bottom: 1em;">
 			<p>
-				We have received request for tutoring! Are you available to help this student with their coursework? If you
+				We have received a request for tutoring! Are you available to help this student with their coursework? If you
 				can, be sure to send them an email! But if you can't, be sure to forward this email to someone else! Thanks!
 			</p>
 		</div>
@@ -30,23 +30,23 @@
 			<b style="font-size: 2em">Schedule</b>
 			<div>
 				<b>Monday:</b>
-				<span>{{monday}}</span>
+				<span>{{schedule.monday}}</span>
 			</div>
 			<div>
 				<b>Tuesday:</b>
-				<span>{{tuesday}}</span>
+				<span>{{schedule.tuesday}}</span>
 			</div>
 			<div>
 				<b>Wednesday:</b>
-				<span>{{wednesday}}</span>
+				<span>{{schedule.wednesday}}</span>
 			</div>
 			<div>
 				<b>Thursday:</b>
-				<span>{{thursday}}</span>
+				<span>{{schedule.thursday}}</span>
 			</div>
 			<div>
 				<b>Friday:</b>
-				<span>{{friday}}</span>
+				<span>{{schedule.friday}}</span>
 			</div>
 		</div>
 		

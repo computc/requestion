@@ -18,11 +18,11 @@ if(Meteor.isClient)
 	
 	Template.form.days =
 	[
-		"Monday",
-		"Tuesday",
-		"Wednesday",
-		"Thursday",
-		"Friday"
+		"monday",
+		"tuesday",
+		"wednesday",
+		"thursday",
+		"friday"
 	];
 	
 	Template.form.times =
@@ -88,7 +88,12 @@ if(Meteor.isClient)
 			var request = Requests.findOne(req_id);
 			
 			console.log(request);
-			//Meteor.call("send an email", Blaze.toHTML(Blaze.With(data, function() {return Template.message;})));
+			
+			Meteor.call("send an email", {
+				to: COMPUTC_EMAIL + ", " + request.email,
+				message: Blaze.toHTML(Blaze.With(request, function() {return Template.tutor_message;})),
+				subject: REQUESTION_PREFIX + " " + request.name + " has requested tutoring for " + request.course
+			});
 		}
 	});
 }
@@ -97,18 +102,19 @@ if(Meteor.isServer)
 {
 	Meteor.methods(
 	{
-		"send an email": function(message)
+		"send an email": function(data)
 		{
 			this.unblock();
 			
 			Email.send({
-				from: "CompUTC <computcofficial@gmail.com>",
-				to: "CompUTC <computcofficial@gmail.com>",
-				subject: "[requestion]",
-				html: message
+				to: data.to,
+				from: COMPUTC_EMAIL,
+				subject: data.subject,
+				html: data.message
 			});
-			
-			console.log("sending an email!");
 		}
 	});
 }
+
+var COMPUTC_EMAIL = "CompUTC <computcofficial@gmail.com>";
+var REQUESTION_PREFIX = "[requestion]"
