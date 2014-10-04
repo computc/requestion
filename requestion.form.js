@@ -9,7 +9,14 @@ if(Meteor.isClient)
 			name: "",
 			email: "",
 			course: "",
-			schedule: {}
+			schedule:
+			{
+				"monday": [],
+				"tuesday": [],
+				"wednesday": [],
+				"thursday": [],
+				"friday": []
+			}
 		}
 		
 		var req_id = Requests.insert(request);
@@ -69,7 +76,9 @@ if(Meteor.isClient)
 		},
 		"click td": function(event)
 		{
-			var time = Template.form.times[$(event.target).parent().index()];
+			$(event.target).toggleClass("selected");
+			
+			var time = Template.form.times[$(event.target).parent().index()-1];
 			var day = Template.form.days[$(event.target).index()];
 			
 			var data = {};
@@ -78,7 +87,16 @@ if(Meteor.isClient)
 			console.log(data);
 			
 			var req_id = Session.get("req_id");
-			Requests.update(req_id, {$push: data});
+			var request = Requests.findOne(req_id);
+			
+			if(request.schedule[day].indexOf(time) == -1)
+			{
+				Requests.update(req_id, {$push: data});
+			}
+			else
+			{
+				Requests.update(req_id, {$pull: data});
+			}
 		},
 		"submit form": function(event)
 		{
@@ -89,11 +107,11 @@ if(Meteor.isClient)
 			
 			console.log(request);
 			
-			Meteor.call("send an email", {
+			/*Meteor.call("send an email", {
 				to: COMPUTC_EMAIL + ", " + request.email,
 				message: Blaze.toHTML(Blaze.With(request, function() {return Template.tutor_message;})),
 				subject: REQUESTION_PREFIX + " " + request.name + " has requested tutoring for " + request.course
-			});
+			});*/
 		}
 	});
 }
