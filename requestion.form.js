@@ -49,6 +49,8 @@ if(Meteor.isClient)
 			var data = {};
 			data[id] = value;
 			
+			console.log(data);
+			
 			var req_id = Session.get("req_id");
 			Requests.update(req_id, {$set: data});
 		},
@@ -59,6 +61,8 @@ if(Meteor.isClient)
 			
 			var data = {};
 			data[name] = id;
+			
+			console.log(data);
 			
 			var req_id = Session.get("req_id");
 			Requests.update(req_id, {$set: data});
@@ -71,6 +75,8 @@ if(Meteor.isClient)
 			var data = {};
 			data["schedule."+day] = time;
 			
+			console.log(data);
+			
 			var req_id = Session.get("req_id");
 			Requests.update(req_id, {$push: data});
 		},
@@ -82,8 +88,6 @@ if(Meteor.isClient)
 			var request = Requests.findOne(req_id);
 			
 			console.log(request);
-			
-			//Requests.insert(data);
 			//Meteor.call("send an email", Blaze.toHTML(Blaze.With(data, function() {return Template.message;})));
 		}
 	});
