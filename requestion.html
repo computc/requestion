@@ -3,5 +3,13 @@
 </head>
 
 <body>
-	{{> form}}
+	{{> requestion}}
 </body>
+
+<template name="requestion">
+	{{#if submitted}}
+		{{> thanks}}
+	{{else}}
+		{{> form}}
+	{{/if}}
+</template>

@@ -107,11 +107,13 @@ if(Meteor.isClient)
 			
 			console.log(request);
 			
-			/*Meteor.call("send an email", {
+			Meteor.call("send an email", {
 				to: COMPUTC_EMAIL + ", " + request.email,
 				message: Blaze.toHTML(Blaze.With(request, function() {return Template.tutor_message;})),
 				subject: REQUESTION_PREFIX + " " + request.name + " has requested tutoring for " + request.course
-			});*/
+			});
+			
+			Session.set("submitted", true);
 		}
 	});
 }
