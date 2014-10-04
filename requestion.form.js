@@ -9,19 +9,35 @@ if(Meteor.isClient)
 			name: "",
 			email: "",
 			course: "",
-			schedule:
-			{
-				monday: [],
-				tuesday: [],
-				wednesday: [],
-				thursday: [],
-				friday: []
-			}
+			schedule: {}
 		}
 		
 		var req_id = Requests.insert(request);
 		Session.set("req_id", req_id);
 	});
+	
+	Template.form.days =
+	[
+		"Monday",
+		"Tuesday",
+		"Wednesday",
+		"Thursday",
+		"Friday"
+	];
+	
+	Template.form.times =
+	[
+		"8am",
+		"9am",
+		"10am",
+		"11am",
+		"12pm",
+		"1pm",
+		"2pm",
+		"3pm",
+		"4pm",
+		"5pm"
+	];
 	
 	Template.form.events(
 	{
@@ -49,22 +65,11 @@ if(Meteor.isClient)
 		},
 		"click td": function(event)
 		{
-			var index = $(event.target).index();
-			var text = $(event.target).text();
+			var time = Template.form.times[$(event.target).parent().index()];
+			var day = Template.form.days[$(event.target).index()];
 			
 			var data = {};
-			if(index == 0)
-				data["schedule.monday"] = text;
-			else if(index == 1)
-				data["schedule.tuesday"] = text;
-			else if(index == 2)
-				data["schedule.wednesday"] = text;
-			else if(index == 3)
-				data["schedule.thursday"] = text;
-			else if(index == 4)
-				data["schedule.friday"] = text;
-			
-			console.log(data);
+			data["schedule."+day] = time;
 			
 			var req_id = Session.get("req_id");
 			Requests.update(req_id, {$push: data});

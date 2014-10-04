@@ -29,75 +29,21 @@
 		<div>
 			<table>
 				<tr>
-					<th>Monday</th>
-					<th>Tuesday</th>
-					<th>Wednesday</th>
-					<th>Thursday</th>
-					<th>Friday</th>
+					{{#each days}}
+						<th>
+							{{this}}
+						</th>
+					{{/each}}
 				</tr>
-				<tr>
-					<td>8am</td>
-					<td>8am</td>
-					<td>8am</td>
-					<td>8am</td>
-					<td>8am</td>
-				</tr>
-				<tr>
-					<td>9am</td>
-					<td>9am</td>
-					<td>9am</td>
-					<td>9am</td>
-					<td>9am</td>
-				</tr>
-				<tr>
-					<td>10am</td>
-					<td>10am</td>
-					<td>10am</td>
-					<td>10am</td>
-					<td>10am</td>
-				</tr>
-				<tr>
-					<td>11am</td>
-					<td>11am</td>
-					<td>11am</td>
-					<td>11am</td>
-					<td>11am</td>
-				</tr>
-				<tr>
-					<td>12pm</td>
-					<td>12pm</td>
-					<td>12pm</td>
-					<td>12pm</td>
-					<td>12pm</td>
-				</tr>
-				<tr>
-					<td>1pm</td>
-					<td>1pm</td>
-					<td>1pm</td>
-					<td>1pm</td>
-					<td>1pm</td>
-				</tr>
-				<tr>
-					<td>2p</td>
-					<td>2p</td>
-					<td>2p</td>
-					<td>2p</td>
-					<td>2p</td>
-				</tr>
-				<tr>
-					<td>3pm</td>
-					<td>3pm</td>
-					<td>3pm</td>
-					<td>3pm</td>
-					<td>3pm</td>
-				</tr>
-				<tr>
-					<td>4pm</td>
-					<td>4pm</td>
-					<td>4pm</td>
-					<td>4pm</td>
-					<td>4pm</td>
-				</tr>
+				{{#each times}}
+					<tr>
+						{{#each days}}
+							<td>
+								{{this}}
+							</td>
+						{{/each}}
+					</tr>
+				{{/each}}
 			</table>
 		</div>
 		<input type="submit" value="Submit a request"/>
