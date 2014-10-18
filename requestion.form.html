@@ -1,56 +1,66 @@
 <template name="form">
-	<form>
-		<div>
-			<label for="name">Name</label>
-			<input id="name" type="text"/>
-		</div>
-		<div>
-			<label for="email">Email</label>
-			<input id="email" type="text"/>
-		</div>
-		<br>
-		<div>
-			<div>
-				<input name="course" id="CPSC1100" type="radio"/>
-				<label for="CPSC1100">CPSC1100</label>
+	<div id="tutee-form-page">
+		<nav>
+			<span>
+				re:Question v.3.0.2
+			</span>
+		</nav>
+		<h1>
+			<a href="http://www.computc.org">
+				<img src="/images/logo.svg" alt="CompUTC"/>
+			</a>
+		</h1>
+		<form>
+			<div class="form-part">
+				<label for="name">Name*</label>
+				<input id="name" type="text"/>
 			</div>
-			<div>
-				<input name="course" id="CPSC1110" type="radio"/>
-				<label for="CPSC1110">CPSC1110</label>
+			<div class="form-part">
+				<label for="email">Email*</label>
+				<input id="email" type="text"/>
 			</div>
-			<div>
-				<input name="course" id="CPSC2100" type="radio"/>
-				<label for="CPSC2100">CPSC2100</label>
+			<div class="form-part">
+				<label for="course">Course*</label>
+				<div>
+					<input name="course" id="CPSC1100" type="radio"/>
+					<label for="CPSC1100">CPSC1100, Fundamentals of Computer Science</label>
+				</div>
+				<div>
+					<input name="course" id="CPSC1110" type="radio"/>
+					<label for="CPSC1110">CPSC1110, Data Structures and Program Design</label>
+				</div>
+				<div>
+					<input name="course" id="CPSC2100" type="radio"/>
+					<label for="CPSC2100">CPSC2100, Software Design and Development</label>
+				</div>
+				<div>
+					<input name="course" id="CPEN3700" type="radio"/>
+					<label for="CPEN3700">CPEN3700, Digital Logic and Computer Hardware</label>
+				</div>
 			</div>
-			<div>
-				<input name="course" id="CPEN3700" type="radio"/>
-				<label for="CPEN3700">CPEN3700</label>
-			</div>
-		</div>
-		<br>
-		<div>
-			<table>
-				<tr>
-					<th>Monday</th>
-					<th>Tuesday</th>
-					<th>Wednesday</th>
-					<th>Thursday</th>
-					<th>Friday</th>
-				</tr>
-				{{#each times}}
+			<div class="form-part">
+				<table>
 					<tr>
-						<td>{{this}}</td>
-						<td>{{this}}</td>
-						<td>{{this}}</td>
-						<td>{{this}}</td>
-						<td>{{this}}</td>
+						<th>M</th>
+						<th>T</th>
+						<th>W</th>
+						<th>T</th>
+						<th>F</th>
 					</tr>
-				{{/each}}
-			</table>
-		</div>
-		<br>
-		<div>
-			<input type="submit" value="Submit a request"/>
-		</div>
-	</form>
+					{{#each times}}
+						<tr>
+							<td>{{this}}</td>
+							<td>{{this}}</td>
+							<td>{{this}}</td>
+							<td>{{this}}</td>
+							<td>{{this}}</td>
+						</tr>
+					{{/each}}
+				</table>
+			</div>
+			<div class="form-part">
+				<input type="submit" value="Submit a request"/>
+			</div>
+		</form>
+	</div>
 </template>

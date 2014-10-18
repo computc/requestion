@@ -6,14 +6,110 @@
 html
 {
 	font-size: 18px;
+	font-family: open-sans,  calibri, sans-serif;
+	
+	background-color: #F8F8F8;
+	background-image: url("/images/grey.png");
 }
 
-body
+#tutee-form-page
 {
-	margin: 1rem;
+	margin: auto;
+	overflow: auto;
+	max-width: 480px;
 }
 
-.selected
+#tutee-form-page > nav
+{
+	text-align: right;
+	font-size: 1.25rem;
+	white-space: nowrap;
+	font-family: goldfish;
+	
+	padding: 0.25rem;
+	
+	color: #EEE;
+	background-color: #C33;
+}
+
+#tutee-form-page > h1
+{
+	padding: 1rem;
+	background-size: cover;
+	background-position: top;
+	background-image: url("/images/chattanooga.jpg");
+}
+
+#tutee-form-page > h1 > a
+{
+	display: block;
+	line-height: 1rem;
+}
+
+#tutee-form-page > h1 > a > img
+{
+	width: 100%;
+}
+
+#tutee-form-page > form > .form-part
+{
+	margin: 1rem 0rem;
+}
+
+#tutee-form-page > form > .form-part > label
+{
+	display: block;
+	margin-bottom: 0.25rem;
+	
+	font-weight: bold;
+	font-size: 1.25rem;
+}
+
+#tutee-form-page > form > .form-part > input[type=text]
+{
+	width: 100%;
+	padding: 0.25rem;
+	box-sizing: border-box;
+	
+	font: inherit;
+}
+
+#tutee-form-page > form > .form-part > table
+{
+	width: 100%;
+	text-align: left;
+	border-spacing: 3px;
+}
+
+#tutee-form-page > form > .form-part > table   td
+{
+	cursor: pointer;
+}
+
+#tutee-form-page > form > .form-part > table   td.selected
 {
 	background-color: yellow;
 }
+
+#tutee-form-page > form > .form-part > input[type=submit]
+{
+	margin: auto;
+	display: block;
+	padding: 0.5rem 1rem;
+		
+	color: #F8F8F8;
+	font-weight: bold;
+	font-size: 1.25rem;
+	text-decoration: none;
+	
+	border: none;
+	border-radius: 0.5rem;
+	border-bottom-width: 4px;
+	border-bottom-style: solid;
+	border-bottom-color: brown;
+	
+	background-color: #CC3333;
+}
+
+@font-face {font-family: goldfish; src: url("/fonts/goldfish.ttf") format("truetype");}
+@font-face {font-family: open-sans; src: url("/fonts/open-sans.ttf") format("truetype");}
